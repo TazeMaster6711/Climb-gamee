@@ -59,9 +59,29 @@ while True:
     if dead:        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()        
-        pygame.time.Clock().tick(60)
-        pygame.display.flip()
+                pygame.quit()  
+            if event.type == pygame.K_r:    
+                dead = False
+                x_pos = 0
+                y_pos = 0
+                x_vel = 0
+                y_vel = 0
+                jump_last_frame = False
+                touching_ground = False
+                jump = False
+                platform_pos = []
+                checkpoint = 0
+                platforms = []
+                gravity = True
+                dash_cooldown = 0
+                dash_duration = 0
+                lava_pos = 1200
+                for i in range(80):
+                    pos = (random.randint(1, 29)*50, random.randint(-17, 0) * 50 + checkpoint)
+                    platforms.append(pygame.Rect(pos[0], pos[1], 50, 50))
+                    platform_pos.append((pos[0], pos[1]))
+                pygame.time.Clock().tick(60)
+                pygame.display.flip()
         continue
 
     lava_pos -= 2   
